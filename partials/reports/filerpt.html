@@ -1,0 +1,62 @@
+<h4 class="heading">
+	Pending Report (File Wise)
+</h4>
+<div class="form-group">
+    <label for="exampleInputEmail1">SELECT DEPT</label>
+    <select class="form-control" ng-model="maindept">
+	  <option value="">All</option>
+	  <option value="{{dept.id}}" ng-repeat="dept in deptlist">{{dept.dept_name}}</option>
+	</select>
+</div>
+<label for="exampleInputEmail1">File Type</label>
+<div class="radio">
+	<label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="searchtype" value="0" checked>
+   		All
+  </label>
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="searchtype" value="2">
+   		File
+  </label>
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="searchtype" value="1">
+   		Current
+  </label>
+</div>
+<table class="table table-striped" style="margin-top:20px;" ng-show="translist.length>0">
+	<tr>
+		<th>SNo</th>
+		<th>FRN</th>
+		<th>FRN Date</th>
+		<th>File Type</th>
+		<th>Dept</th>
+		<th>Dept No</th>
+		<th>Dept Date</th>
+		<th>Subject</th>
+		<th>Received On</th>
+		<th>Received From</th>
+		<th>Current Status</th>
+	</tr>
+	<tr ng-repeat="trans in translist | filter:deptfilter | filter:filefilter">
+		<td>{{$index+1}}</td>
+		<td>{{str_pad(trans.file_id)}}</td>
+		<td>{{Dates.getDate(trans.filedata.created_at)}}</td>
+		<td ng-if="trans.filedata.file_type=='1'">Current</td>
+		<td ng-if="trans.filedata.file_type=='2'">File</td>
+		<td>{{trans.filedata.deptdata.dept_name}}</td>
+		<td>{{trans.filedata.dept_no}}</td>
+		<td>{{Dates.getDate(trans.filedata.received_on)}}</td>
+		<td>{{trans.filedata.subject}}</td>
+		<td>{{Dates.getDate(trans.received_on)}}</td>
+		<td>{{trans.receivedata.user_desc}}</td>
+		<td ng-if="trans.filedata.status=='0'">At Tappal</td>
+		<td ng-if="trans.filedata.status=='1'">At ASO</td>
+		<td ng-if="trans.filedata.status=='2'">At SO</td>
+		<td ng-if="trans.filedata.status=='3'">At Officer</td>
+		<td ng-if="trans.filedata.status=='4'">At Secretary Peshi</td>
+		<td ng-if="trans.filedata.status=='5'">At Secretary</td>
+		<td ng-if="trans.filedata.status=='6'">At Special Secretary Peshi</td>
+		<td ng-if="trans.filedata.status=='7'">At Special Secretary</td>
+		<td ng-if="trans.filedata.status=='10'">Closed</td>
+	</tr>
+</table>

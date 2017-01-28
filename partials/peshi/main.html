@@ -1,0 +1,93 @@
+<h4 class="heading">
+	List of Files at your level
+</h4>
+<table class="table table-striped" style="margin-top:20px;" ng-show="filelist.length>0">
+	<tr>
+		<th>SNo</th>
+		<th>FRN No</th>
+		<th>FRN Date</th>
+		<th>File Type</th>
+		<th>Dept</th>
+		<th>Dept No</th>
+		<th>Received On</th>
+		<th>Received From</th>
+		<th>Subject</th>
+		<th>Remarks</th>
+		<th>Peshi No</th>
+		<th>Process</th>
+
+	</tr>
+	<tr ng-repeat="file in filelist">
+		<td>{{$index+1}}</td>
+		<td>{{str_pad(file.file_id)}}</td>
+		<td>{{Dates.getDate(file.filedata.created_at)}}</td>
+		<td ng-if="file.filedata.file_type=='1'">Current</td>
+		<td ng-if="file.filedata.file_type!='1'">File</td>
+		<td>{{file.filedata.deptdata.dept_name}}</td>
+		<td>{{file.filedata.dept_no}}</td>
+		<td>{{Dates.getDate(file.received_on)}}</td>
+		<td>{{file.receivedata.user_desc}}</td>
+		<td>{{file.filedata.subject}}</td>
+		<td>{{file.olddata.remarks}}</td>
+		<td ng-if="file.filedata.sectiondata.length==0">-</td>
+		<td ng-if="file.filedata.sectiondata.length>0">{{file.filedata.sectiondata[0].section_no}}</td>
+		<td><a ng-click="showfilefunc(file)" style="cursor:pointer;">Process</a></td>
+	</tr>
+</table>
+<h5 ng-show="filelist.length==0">There are no files pending with you.</h5>
+
+<div class="lightbox" ng-show="showfile"></div>
+<div class="lightbox_panel_out" ng-show="showfile">
+	<div class="lght_in">
+		<i class="fa fa-times fa-2x othr_cls" ng-click="close_box()"></i>
+		<h4>Process File(FRN:{{str_pad(mainfile.file_id)}})</h4>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Enter Peshi File No</label>
+		    <input type="text" class="form-control"  placeholder="Peshi No" ng-model="section_no" required>
+		</div>
+		<label for="exampleInputEmail1">Select User Type to forward to</label>
+		<div class="radio">
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="3" checked>
+		   		ASO
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="4" checked>
+		   		SO
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="5" checked>
+		   		Officer
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="6" checked>
+		   		Secretary Peshi
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="7" checked>
+		   		Secretary
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="8" checked>
+		   		Special Secretary Peshi
+		  </label>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Select Whom to Forward</label>
+		    <select class="form-control" ng-model="frwd_usr" required>
+			  <option value="">SELECT</option>
+			  <option value="{{user.id}}" ng-repeat="user in userlist | filter:{user_role:userselect}">{{user.user_desc}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Remarks</label>
+		    <textarea class="form-control" rows="3" ng-model="remarks"></textarea>
+		</div>
+		<div class="form-group" ng-show="reasonshow">
+		    <label for="exampleInputEmail1">Reason for Delay</label>
+		    <textarea class="form-control" rows="3" ng-model="reason" required></textarea>
+		</div>
+		<button type="submit" class="btn btn-default" ng-click="frwd_file()">Forward</button>
+		<button type="submit"  class="btn btn-danger" ng-click="close_file()">Close File</button>
+	</div>
+</div>

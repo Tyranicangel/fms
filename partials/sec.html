@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs" style="margin-top:20px;">
+  <li role="presentation" ui-sref-active="active">
+  	<a ui-sref="sec.main">Home</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.reports">Activity Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.checkstatus">Check File Status</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.file">File Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.userrpt">User Wise Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.filerpt">File Wise Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.effrpt">Efficiency Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="sec.password">Change Password</a>
+  </li>
+  <li role="presentation" ui-sref-active="active"><a class="logout" ng-click="logout()">Logout</a></li>
+</ul>
+<div class="alert alert-danger othrtppl_cls" role="alert">Welcome: {{mainuser.user_desc}}</div>
+<div ui-view="content"></div>
+

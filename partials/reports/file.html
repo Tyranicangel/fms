@@ -1,0 +1,58 @@
+<h4 class="heading">
+	File Report
+</h4>
+<div class="frm_usr_crt">
+	<form ng-submit="get_file_rpt()">
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Enter Subject:</label>
+		    <input type="text" class="form-control"  placeholder="Subject" ng-model="subject" required>
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
+<div style="clear:both;"></div>
+<div class="form-group" ng-show="translist.length>0">
+    <label for="exampleInputEmail1">Select Dept</label>
+    <select class="form-control" ng-model="maindept">
+	  <option value="">All</option>
+	  <option value="{{dept.id}}" ng-repeat="dept in deptlist">{{dept.dept_name}}</option>
+	</select>
+</div>
+<table class="table table-striped" style="margin-top:20px;" ng-show="translist.length>0">
+	<tr>
+		<th>SNo</th>
+		<th>FRN</th>
+		<th>FRN Date</th>
+		<th>File Type</th>
+		<th>Dept</th>
+		<th>Dept No</th>
+		<th>Dept Date</th>
+		<th>Subject</th>
+		<th>Received On</th>
+		<th>Received From</th>
+		<th>Current Status</th>
+	</tr>
+	<tr ng-repeat="trans in translist | filter:{dept_id:maindept}">
+		<td>{{$index+1}}</td>
+		<td>{{str_pad(trans.id)}}</td>
+		<td>{{Dates.getDate(trans.created_at)}}</td>
+		<td ng-if="trans.file_type=='1'">Current</td>
+		<td ng-if="trans.file_type=='2'">File</td>
+		<td>{{trans.deptdata.dept_name}}</td>
+		<td>{{trans.dept_no}}</td>
+		<td>{{Dates.getDate(trans.received_on)}}</td>
+		<td>{{trans.subject}}</td>
+		<td>{{Dates.getDate(trans.transdata[0].received_on)}}</td>
+		<td>{{trans.transdata[0].receivedata.user_desc}}</td>
+		<td ng-if="trans.status=='0'">At Tappal</td>
+		<td ng-if="trans.status=='1'">At ASO</td>
+		<td ng-if="trans.status=='2'">At SO</td>
+		<td ng-if="trans.status=='3'">At Officer</td>
+		<td ng-if="trans.status=='4'">At Secretary Peshi</td>
+		<td ng-if="trans.status=='5'">At Secretary</td>
+		<td ng-if="trans.status=='6'">At Special Secretary Peshi</td>
+		<td ng-if="trans.status=='7'">At Special Secretary</td>
+		<td ng-if="trans.status=='10'">Closed</td>
+	</tr>
+</table>
+

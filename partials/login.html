@@ -1,0 +1,34 @@
+
+<div class="div_left">
+	<div class="wel_p_fms">
+		<h4 style="float:left;">
+			Welcome to the File Management System Web Portal
+		</h4>
+		<p class="wel_tt">The File Management System is used the Finance Department in order to ensure the smooth flow of files in the department in a transparent method and create efficiency in activity of the department.</p>
+	</div>
+	<div class="home_page_icons">
+		<div class="image1" style="border-left:0px;">
+			<img src="images/accounts_icon.png" style="width:90px;"/>
+		</div>
+		<div class="image1">
+			<img src="images/list_icon.png" style="width:90px;"/>
+		</div>
+		<div class="image1">
+			<img src="images/rupee_icon.png" style="padding-top:10px;"/>
+		</div>
+	</div>
+</div>
+<div class="div_right">
+	<form ng-submit="login()">
+		<div class="form-group">
+			<label for="exampleInputEmail1">User Name</label>
+			<input type="text" class="form-control"  placeholder="Username" ng-model="user.username" required>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Password</label>
+			<input type="password" class="form-control"  placeholder="Password" ng-model="user.password" required>
+		</div>
+		 <button type="submit" class="btn btn-default">Sign In</button>
+		 <div style="margin-top:10px;" class="alert alert-warning" ng-show="showerror">{{loginerrormsg}}</div>
+	</form>
+</div>

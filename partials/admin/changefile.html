@@ -1,0 +1,103 @@
+<h4 class="heading">
+	Change File Location
+</h4>
+<div class="frm_usr_crt">
+	<form ng-submit="get_frn_details()">
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Enter FRN No:</label>
+		    <input type="text" class="form-control"  placeholder="FRN No" ng-model="frn" required>
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
+<table class="table table-striped" style="margin-top:20px;" ng-show="file">
+	<tr>
+		<th>File Type</th>
+		<th>Dept</th>
+		<th>Dept No</th>
+		<th>Dept Date</th>
+		<th>FRN Date</th>
+		<th>Subject</th>
+		<th>Status</th>
+	</tr>
+	<tr>
+		<td ng-if="file.file_type=='1'">Current</td>
+		<td ng-if="file.file_type=='2'">File</td>
+		<td>{{file.deptdata.dept_name}}</td>
+		<td>{{file.dept_no}}</td>
+		<td>{{Dates.getDate(file.received_on)}}</td>
+		<td>{{Dates.getDate(file.created_at)}}</td>
+		<td>{{file.subject}}</td>
+		<td ng-if="file.status=='0'">At Tappal</td>
+		<td ng-if="file.status=='1'">At ASO</td>
+		<td ng-if="file.status=='2'">At SO</td>
+		<td ng-if="file.status=='3'">At Officer</td>
+		<td ng-if="file.status=='4'">At Secretary Peshi</td>
+		<td ng-if="file.status=='5'">At Secretary</td>
+		<td ng-if="file.status=='6'">At Special Secretary Peshi</td>
+		<td ng-if="file.status=='7'">At Special Secretary</td>
+		<td ng-if="file.status=='10'">Closed</td>
+	</tr>
+</table>
+<div style="clear:both"></div>
+<div ng-show="file">
+	<label for="exampleInputEmail1">File Current Position:</label>
+	<table class="table table-striped" style="margin-top:20px;" ng-show="trans">
+	<tr>
+		<th>User</th>
+		<th>Received From</th>
+		<th>Received On</th>
+	</tr>
+	<tr>
+		<td>{{trans.userdata.user_desc}}</td>
+		<td>{{trans.receivedata.user_desc}}</td>
+		<td>{{Dates.getDate(trans.received_on)}}</td>
+	</tr>
+</table>
+</div>
+
+<form ng-submit="change_file()" ng-show="file">
+	<label for="exampleInputEmail1">Select User Type to forward to</label>
+		<div class="radio">
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="3" checked>
+		   		ASO
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="4" checked>
+		   		SO
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="5" checked>
+		   		Officer
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="6" checked>
+		   		Secretary Peshi
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="7" checked>
+		   		Secretary 
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="8" checked>
+		   		Special Secretary Peshi
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="userselect" value="9" checked>
+		   		Special Secretary
+		  </label>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Select Whom to Forward</label>
+		    <select class="form-control" ng-model="frwd_usr" required>
+			  <option value="">SELECT</option>
+			  <option value="{{user.id}}" ng-repeat="user in userlist | filter:{user_role:userselect}">{{user.user_desc}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Remarks</label>
+		    <textarea class="form-control" rows="3" ng-model="remarks" required></textarea>
+		</div>
+		<button type="submit" class="btn btn-default">Forward</button>
+</form>

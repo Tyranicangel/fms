@@ -1,0 +1,34 @@
+<h4 class="heading">
+	Efficiency Report (User Wise)
+</h4>
+<div class="form-group">
+    <label for="exampleInputEmail1">SELECT SECTION</label>
+    <select class="form-control" ng-model="mainsection">
+	  <option value="">All</option>
+	  <option value="{{section.id}}" ng-repeat="section in sectionlist">{{section.section_name}}</option>
+	</select>
+</div>
+<table class="table table-striped" style="margin-top:20px;" ng-show="userlist.length>0">
+	<tr>
+		<th>SNo</th>
+		<th>User</th>
+		<th>Section</th>
+		<th>Total Files</th>
+		<th>Total Forwarded</th>
+		<th>Total Pending</th>
+		<th>Max Time Taken</th>
+		<th>Min Time Taken</th>
+		<th>Avg Time Taken</th>	
+	</tr>
+	<tr ng-repeat="user in userlist | filter:{section_id:mainsection}">
+		<td>{{$index+1}}</td>
+		<td>{{user.user_desc}}</td>
+		<td>{{user.section_name}}</td>
+		<td>{{user.totalcount}}</td>
+		<td>{{user.frwdcount}}</td>
+		<td>{{user.pendingcount}}</td>
+		<td>{{getTime(user.maxtime)}}</td>
+		<td>{{getTime(user.mintime)}}</td>
+		<td>{{getTime(user.meantime)}}</td>
+	</tr>
+</table>

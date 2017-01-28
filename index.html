@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FMSApp" ng-controller="MainController">
+<head>
+	<meta charset="UTF-8">
+	<title>FMS</title>
+	<style></style>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-ui/ui/datepicker.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/state.js"></script>
+	<script type="text/javascript" src="scripts/logincontroller.js"></script>
+	<script type="text/javascript" src="scripts/admincontroller.js"></script>
+	<script type="text/javascript" src="scripts/asocontroller.js"></script>
+	<script type="text/javascript" src="scripts/socontroller.js"></script>
+	<script type="text/javascript" src="scripts/officercontroller.js"></script>
+	<script type="text/javascript" src="scripts/peshicontroller.js"></script>
+	<script type="text/javascript" src="scripts/speshicontroller.js"></script>
+	<script type="text/javascript" src="scripts/seccontroller.js"></script>
+	<script type="text/javascript" src="scripts/specialseccontroller.js"></script>
+	<script type="text/javascript" src="scripts/tappalcontroller.js"></script>
+	<script type="text/javascript" src="scripts/rptcontroller.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
+	<link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+	<div class="header_out">
+		<div class="header_in"></div>
+	</div>
+	<div class="content_out">
+		<div class="content_in">
+			<div ui-view="main"></div>
+		</div>
+	</div>
+	<div class="loader_wrap" ng-show="showloader"><div class="loading"><i class="fa fa-spinner fa-refresh"></i></div></div>
+	<div class="footer">
+			<div class="container">
+				<div class="copyright">
+					&copy; Copyright Finance Dept.,Govt of A.P, Powered By 
+					<a href="http://www.pixelvide.com">Pixelvide</a> <br>
+					<span>
+						Technology: Angularjs and Laravel Framework.Best Viewed In All Latest Browsers.
+					</span><br>
+					<span>
+						IF IE: supported only in IE8 and above
+					</span>
+				</div>
+				<div class="footer_info">
+					<div class="logo_dv">
+						<div class="pix_logo_img_dv">
+							<a href="http://www.pixelvide.com">
+								<img src="images/pixelvide_logo.png" alt="pixelvide logo" style="width:105px;">
+							</a>
+						</div>
+						<p class="eff_web_txt">
+							Efficient Web.Secure Web
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

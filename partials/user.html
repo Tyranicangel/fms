@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs" style="margin-top:20px;">
+  <li role="presentation" ui-sref-active="active">
+  	<a ui-sref="admin.main">Home</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+  	<a ui-sref="admin.createuser">Create user</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="admin.edituser">Edit user</a>
+  </li>
+   <li role="presentation" ui-sref-active="active">
+  	<a ui-sref="admin.createsec">Create Section</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="admin.createdept">Create Department</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="admin.changefile">Change File Location</a>
+  </li>
+  <!-- <li role="presentation" ui-sref-active="active">
+    <a ui-sref="admin.sectionrpt">Section Report</a>
+  </li> -->
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="admin.resetpass">Reset Password</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="admin.password">Change Password</a>
+  </li>
+  <li role="presentation" ui-sref-active="active"><a class="logout" ng-click="logout()">Logout</a></li>
+</ul>
+<div class="alert alert-danger othrtppl_cls" role="alert">Welcome: {{mainuser.user_desc}}</div>
+<div ui-view="content"></div>

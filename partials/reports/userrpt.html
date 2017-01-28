@@ -1,0 +1,58 @@
+<h4 class="heading">
+	Pending Report (User Wise)
+</h4>
+<div class="form-group">
+    <label for="exampleInputEmail1">SELECT SECTION</label>
+    <select class="form-control" ng-model="mainsection">
+	  <option value="">All</option>
+	  <option value="{{section.id}}" ng-repeat="section in sectionlist">{{section.section_name}}</option>
+	</select>
+</div>
+<table class="table table-striped" style="margin-top:20px;" ng-show="userlist.length>0">
+	<tr>
+		<th>SNo</th>
+		<th>User</th>
+		<th>Section</th>
+		<th>Pending File</th>
+		<th>View</th>
+	</tr>
+	<tr ng-repeat="user in userlist | filter:{section_id:mainsection}">
+		<td>{{$index+1}}</td>
+		<td>{{user.user_desc}}</td>
+		<td>{{user.sectiondata.section_name}}</td>
+		<td>{{user.pendingtrans}}</td>
+		<td><button ng-show="user.pendingtrans!=0" class="btn btn-default" ng-click="view_trans(user)">View</button></td>
+	</tr>
+</table>
+<div class="lightbox" ng-show="showfile"></div>
+<div class="lightbox_panel_out" ng-show="showfile">
+	<div class="lght_in">
+		<i class="fa fa-times fa-2x othr_cls" ng-click="close_box()"></i>
+		<h4>User:{{mainuser.user_desc}}  Section:{{mainuser.sectiondata.section_name}}</h4>
+		<table class="table table-striped" style="margin-top:20px;">
+			<tr>
+				<th>SNo</th>
+				<th>FRN No</th>
+				<th>FRN Date</th>
+				<th>File Type</th>
+				<th>Dept</th>
+				<th>Dept No</th>
+				<th>Received On</th>
+				<th>Received From</th>
+				<th>Subject</th>
+			</tr>
+			<tr ng-repeat="file in filelist">
+				<td>{{$index+1}}</td>
+				<td>{{str_pad(file.file_id)}}</td>
+				<td>{{Dates.getDate(file.filedata.created_at)}}</td>
+				<td ng-if="file.filedata.file_type=='1'">Current</td>
+				<td ng-if="file.filedata.file_type!='1'">File</td>
+				<td>{{file.filedata.deptdata.dept_name}}</td>
+				<td>{{file.filedata.dept_no}}</td>
+				<td>{{Dates.getDate(file.received_on)}}</td>
+				<td>{{file.receivedata.user_desc}}</td>
+				<td>{{file.filedata.subject}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

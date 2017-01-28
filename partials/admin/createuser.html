@@ -1,0 +1,28 @@
+<h4 class="heading">
+	Create User
+</h4>
+<div class="frm_usr_crt">
+	<form ng-submit="create_user()">
+		<div class="form-group">
+		    <label for="exampleInputEmail1">User Type</label>
+		    <select class="form-control" ng-options="role.role_name for role in rolelist" ng-model="user.type" required>
+			  <option value="">SELECT</option>
+			</select>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">Select Section</label>
+		    <select class="form-control" ng-options="section.section_name for section in sectionlist" ng-model="user.section" required>
+			  <option value="">SELECT</option>
+			</select>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">User Name</label>
+		    <input type="text" class="form-control"  placeholder="Username" ng-model="user.name" required>
+		</div>
+		<div class="form-group">
+		    <label for="exampleInputEmail1">User Description</label>
+		    <input type="text" class="form-control"  placeholder="Description" ng-model="user.desc" required>
+		</div>
+		<button type="submit" class="btn btn-default">Create</button>
+	</form>
+</div>

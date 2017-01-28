@@ -1,0 +1,24 @@
+<ul class="nav nav-tabs" style="margin-top:20px;">
+  <li role="presentation" ui-sref-active="active">
+  	<a ui-sref="peshi.main">Home</a>
+  </li>
+   <li role="presentation" ui-sref-active="active">
+  	<a ui-sref="peshi.createfile">Create file</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="peshi.reports">Activity Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="peshi.checkstatus">Check File Status</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="peshi.file">File Report</a>
+  </li>
+  <li role="presentation" ui-sref-active="active">
+    <a ui-sref="peshi.password">Change Password</a>
+  </li>
+  <li role="presentation" ui-sref-active="active"><a class="logout" ng-click="logout()">Logout</a></li>
+</ul>
+<div class="alert alert-danger othrtppl_cls" role="alert">Welcome: {{mainuser.user_desc}}</div>
+<div ui-view="content"></div>
+
